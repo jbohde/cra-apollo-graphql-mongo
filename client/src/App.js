@@ -10,9 +10,11 @@ import {
   Routes,
   Route
 } from 'react-router-dom';
+import { CookiesProvider } from 'react-cookie';
 
 import { CurrentUserContextProvider } from './context';
 
+import Navigation from './components/Navigation';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Registration from './pages/Registration';
@@ -43,17 +45,20 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <Router>
-        <CurrentUserContextProvider>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Registration />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/*" element={<NotFound />} />
-          </Routes>
-        </CurrentUserContextProvider>
-      </Router>
+      <CookiesProvider>
+        <Router>
+          <CurrentUserContextProvider>
+            <Navigation />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Registration />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/*" element={<NotFound />} />
+            </Routes>
+          </CurrentUserContextProvider>
+        </Router>
+      </CookiesProvider>
     </ApolloProvider>
   );
 }
