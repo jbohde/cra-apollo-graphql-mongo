@@ -6,6 +6,7 @@ type User {
   firstName: String
   lastName: String
   email: String
+  isAuthenticated: Boolean
 }
 
 type Auth {
