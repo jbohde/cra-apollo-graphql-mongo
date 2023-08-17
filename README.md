@@ -1,1 +1,1 @@
-# react-apollo-graphql-mongoose
+# create-react-app-apollo-graphql-mongoose
